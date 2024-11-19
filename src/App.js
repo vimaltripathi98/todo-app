@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import AddTask from './Components/AddTask';
-import TaskList from './Components/TaskList';
-import Filter from './Components/Filter';
+import AddTask from './Components/AddTask/AddTask.js';
+import TaskList from './Components/TaskList.js';
+import Filter from './Components/Filter/Filter.js';
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -47,7 +47,6 @@ function App() {
 
   return (
     <div>
-      <h1>Todo App</h1>
       <AddTask addTask={addTask} />
       <Filter setFilter={setFilter} />
       <TaskList

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import classes from "../../Styles/Task.module.css";
+
 
 const Task = ({ task, toggleTaskCompletion, deleteTask, editTask }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -10,23 +12,25 @@ const Task = ({ task, toggleTaskCompletion, deleteTask, editTask }) => {
     };
 
     return (
-        <li>
+        <li className={`${classes.task} ${task.completed ? classes.completed : ''} ${isEditing ? classes.editing : ''}`}>
             <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => toggleTaskCompletion(task.id)}
+                className={classes.checkbox}
             />
             {isEditing ? (
                 <input
                     type="text"
                     value={newText}
                     onChange={(e) => setNewText(e.target.value)}
+                    className={classes.editInput}
                 />
             ) : (
-                <span>{task.text}</span>
+                <span className={classes.taskText}>{task.text}</span>
             )}
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
-            <button onClick={() => setIsEditing(!isEditing)}>
+            <button onClick={() => deleteTask(task.id)} className={`${classes.button} ${classes.delete}`}>Delete</button>
+            <button onClick={() => setIsEditing(!isEditing)} className={classes.button}>
                 {isEditing ? 'Save' : 'Edit'}
             </button>
         </li>
